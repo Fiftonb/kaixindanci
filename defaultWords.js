@@ -106,6 +106,4 @@ const defaultWords = [
     { "english": "atmosphere", "chinese": "大气，气氛" },
     { "english": "attach", "chinese": "附加，依恋" },
     { "english": "attack", "chinese": "攻击，进攻" }
-];
-
-export default defaultWords; 
+]; 

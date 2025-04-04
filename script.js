@@ -1,5 +1,3 @@
-import defaultWords from './defaultWords.js';
-
 // 游戏状态
 let gameState = {
     words: defaultWords, // 默认使用预设的单词列表
