@@ -1,0 +1,253 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.game-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 状态栏样式 */
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.player-status {
+    width: 25%;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.score {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.chinese-hint {
+    width: 50%;
+    text-align: center;
+    font-size: 24px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background-color: #7C9D96;
+    transition: width 0.3s ease;
+}
+
+/* 游戏区域样式 */
+.game-area {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.player1-area, .player2-area {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 单词卡片样式 */
+.word-card {
+    aspect-ratio: 2/1;
+    cursor: pointer;
+    perspective: 1000px;
+    transition: transform 0.3s ease;
+}
+
+.word-card:hover {
+    transform: translateY(-5px);
+}
+
+.word-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.word-card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #000;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    word-break: break-word;
+    text-align: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.word-text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* 发音按钮样式 */
+.speak-btn {
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+}
+
+.speak-btn:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.word-card.matched .word-text {
+    color: #999;
+}
+
+.word-card.matched .speak-btn {
+    opacity: 0.3;
+}
+
+/* 莫兰迪色系卡片 */
+.word-card:nth-child(1) .word-card-front { background-color: #E6E4E1; }
+.word-card:nth-child(2) .word-card-front { background-color: #B4B8B8; }
+.word-card:nth-child(3) .word-card-front { background-color: #92A9BD; }
+.word-card:nth-child(4) .word-card-front { background-color: #B5C0C4; }
+.word-card:nth-child(5) .word-card-front { background-color: #E4D5C7; }
+.word-card:nth-child(6) .word-card-front { background-color: #D1C2B8; }
+.word-card:nth-child(7) .word-card-front { background-color: #C7C2BC; }
+.word-card:nth-child(8) .word-card-front { background-color: #B8B0A9; }
+.word-card:nth-child(9) .word-card-front { background-color: #AAB0B6; }
+
+.word-card.wrong .word-card-front {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* 控制按钮样式 */
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.control-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #7C9D96;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.control-btn:hover {
+    background-color: #6A8B84;
+    transform: translateY(-2px);
+}
+
+/* 游戏结束提示样式 */
+.game-over {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 40px 60px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    min-width: 300px;
+    z-index: 100;
+}
+
+.game-over h1 {
+    color: #7C9D96;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.final-score {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.winner-message {
+    font-size: 24px;
+    color: #7C9D96;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.game-over-hint {
+    font-size: 16px;
+    color: #666;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.hidden {
+    display: none;
+}
+
+/* 游戏区域在游戏结束时的样式 */
+.game-area.game-ended {
+    opacity: 0.5;
+    pointer-events: none;
+} 
