@@ -240,8 +240,21 @@ function handleCardClick(card, english) {
 // 显示下一个中文词
 function showNextChineseWord() {
     const currentWord = gameState.displayWords[gameState.currentWordIndex];
-    chineseHint.textContent = currentWord.chinese;
+    chineseHint.innerHTML = `
+        <div class="hint-content">
+            <span>${currentWord.chinese}</span>
+            <button class="speak-btn hint-speak-btn" title="听发音" onclick="event.stopPropagation(); window.speakCurrentWord();">🔊</button>
+        </div>
+    `;
 }
+
+// 将speakWord函数设为全局可访问
+window.speakCurrentWord = function() {
+    if (gameState.isGameStarted) {
+        const currentWord = gameState.displayWords[gameState.currentWordIndex];
+        speakWord(currentWord.english);
+    }
+};
 
 // 更新分数和进度条
 function updateScores() {
