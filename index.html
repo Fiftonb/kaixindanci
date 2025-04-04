@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>双人对战单词匹配游戏</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="./xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
     <div class="game-container">
@@ -18,7 +18,17 @@
                 </div>
             </div>
             <div class="chinese-hint" id="chinese-hint">
-                等待游戏开始...
+                <div class="welcome-message">
+                    <h2>欢迎来到双人对战单词匹配游戏！</h2>
+                    <p>游戏规则：</p>
+                    <ul>
+                        <li>系统会显示中文含义</li>
+                        <li>两位玩家同时在各自区域寻找对应的英文单词</li>
+                        <li>率先点击正确单词的玩家得分</li>
+                        <li>支持单词发音功能</li>
+                    </ul>
+                    <div class="start-tip">点击下方"开始游戏"立即开始！</div>
+                </div>
             </div>
             <div class="player-status player2-status">
                 <div class="score">玩家2得分: <span id="player2-score">0</span></div>
@@ -30,8 +40,12 @@
 
         <!-- 游戏区域 -->
         <div class="game-area">
-            <div class="player1-area" id="player1-area"></div>
-            <div class="player2-area" id="player2-area"></div>
+            <div class="player1-area" id="player1-area">
+                <div class="welcome-area-hint">玩家1区域</div>
+            </div>
+            <div class="player2-area" id="player2-area">
+                <div class="welcome-area-hint">玩家2区域</div>
+            </div>
         </div>
 
         <!-- 游戏结束提示 -->
@@ -47,7 +61,7 @@
         <div class="control-buttons">
             <input type="file" id="file-input" accept=".xlsx,.xls" style="display: none;">
             <button id="import-btn" class="control-btn">导入文件</button>
-            <button id="start-btn" class="control-btn">开始游戏</button>
+            <button id="start-btn" class="control-btn primary-btn">开始游戏</button>
             <button id="reset-btn" class="control-btn">重置游戏</button>
         </div>
     </div>

@@ -57,9 +57,18 @@ async function handleFileImport(event) {
 
         gameState.words = jsonData;
         gameState.totalWords = jsonData.length;
-        alert('文件导入成功！');
+        
+        // 如果游戏已经开始，则自动重新开始游戏
+        if (gameState.isGameStarted) {
+            startGame();
+        } else {
+            alert('文件导入成功！点击"开始游戏"开始游戏。');
+        }
     };
     reader.readAsArrayBuffer(file);
+    
+    // 清除input的value，确保同一个文件可以重复导入
+    event.target.value = '';
 }
 
 // 开始游戏
@@ -68,6 +77,10 @@ function startGame() {
         alert('请先导入单词文件！');
         return;
     }
+
+    // 清除玩家区域的欢迎提示
+    player1Area.innerHTML = '';
+    player2Area.innerHTML = '';
 
     gameState.isGameStarted = true;
     gameState.currentWordIndex = 0;
